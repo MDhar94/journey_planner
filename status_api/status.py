@@ -6,10 +6,7 @@ from params import API_KEY
 def return_modes(app_key):
 
     """Returns the modes (different TFL branches) that are available
-    on the API
-
-    Requires a valid TFL API key for their Unified API
-    https://api-portal.tfl.gov.uk/"""
+    on the API"""
 
     base_url = f'https://api.tfl.gov.uk/Line/Meta/Modes'
     params_dict = {'app_key':app_key}
@@ -19,6 +16,8 @@ def return_modes(app_key):
     return res.json()
 
 def line_status(app_key, modes):
+
+    """Returns the status data for a given 'mode' of the TFL network"""
 
     base_url = f'https://api.tfl.gov.uk/Line/Mode/{modes}/Status'
     params_dict = {'app_key':app_key}
