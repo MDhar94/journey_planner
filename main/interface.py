@@ -1,5 +1,5 @@
-import emoji
-import survey
+import emoji # type: ignore
+import survey # type: ignore
 import sys
 
 from data_proc.data_proc import issue_reason, tfl_modes, status_proc
