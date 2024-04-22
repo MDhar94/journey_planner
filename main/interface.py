@@ -6,7 +6,7 @@ from data_proc.data_proc import issue_reason, tfl_modes, status_proc
 from status_api.status import line_status, return_modes
 from params import API_KEY
 
-def main_app():
+def main_app(modes):
 
     """The main flow of this app"""
 
@@ -41,9 +41,11 @@ if __name__ == "__main__":
     modes_data = return_modes(app_key=API_KEY)
     modes = tfl_modes(modes_data)
 
+    modes = [mode for mode in modes if mode.lower() in ['tube','overground']]
+
     try:
         while True:
-            main_app()
+            main_app(modes)
     except KeyboardInterrupt:
         print('\nGoodbye!')
         sys.exit(0)

@@ -1,9 +1,12 @@
-def tfl_modes(mode_api_data):
+def tfl_modes(mode_api_data, reduced_modes=True):
 
     """Returns a list of all possible 'modes' on the TFL network"""
 
     modes = [mode['modeName'].replace("-"," ").capitalize()
              for mode in mode_api_data]
+
+    if reduced_modes:
+        modes = [mode for mode in modes if mode.lower() in ['tube','overground']]
 
     return modes
 
