@@ -1,5 +1,9 @@
 .DEFAULT_GOAL := default
 #################### PACKAGE ACTIONS ###################
+
+install_package:
+	@pip install -e .
+
 reinstall_package:
 	@pip uninstall -y tfl_status || :
 	@pip install -e .
