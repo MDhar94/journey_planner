@@ -36,6 +36,20 @@ def main_app(modes):
     print('\nGoodbye!')
     sys.exit(0)
 
+def run_app():
+
+    modes_data = return_modes(app_key=API_KEY)
+    modes = tfl_modes(modes_data)
+
+    modes = [mode for mode in modes if mode.lower() in ['tube','overground']]
+
+    try:
+        while True:
+            main_app(modes)
+    except KeyboardInterrupt:
+        print('\nGoodbye!')
+        sys.exit(0)
+
 if __name__ == "__main__":
 
     modes_data = return_modes(app_key=API_KEY)
