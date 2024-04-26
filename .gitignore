@@ -1,5 +1,10 @@
-.env
-data/
-.ipynb_checkpoints/
+# Files
 .DS_store
+.env
+.python-version
+
+# Folders
+*.egg-info/
+*.ipynb_checkpoints/
 __pycache__/
+data/
