@@ -4,3 +4,4 @@ plotly-express
 requests
 survey
 python-dotenv
+ipdb

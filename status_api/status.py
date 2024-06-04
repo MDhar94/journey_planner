@@ -32,18 +32,22 @@ if __name__ == "__main__":
 
     res_modes = return_modes(API_KEY)
     modes = [mode['modeName'] for mode in res_modes]
+
+    print(modes)
+
     mode = sys.argv[1]
 
     if mode in modes:
         print("Valid mode provided!")
         res = line_status(API_KEY,mode)
-        # breakpoint()
+
         status = res[0]['lineStatuses'][0]['statusSeverityDescription']
         status_num = res[0]['lineStatuses'][0]['statusSeverity']
-        print(status)
-        print(status_num)
-        print(res[0]['lineStatuses'][0].keys())
-        breakpoint()
+
+        # print(status)
+        # print(status_num)
+        # print(res[0]['lineStatuses'][0].keys())
+        # breakpoint()
         # print(f"The overground is currently operating with {status}")
 
     else:
