@@ -1,3 +1,6 @@
+dash
 emoji
+plotly-express
 requests
 survey
+python-dotenv
