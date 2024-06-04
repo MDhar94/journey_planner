@@ -1,3 +1,5 @@
+dash
 emoji
+plotly-express
 requests
 survey
