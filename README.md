@@ -10,4 +10,4 @@ Built with Python <img src="https://user-images.githubusercontent.com/25181517/1
 * Dashboard with dash
 * CLI tool
 
-Data sourced from the TFL "Unified API"_access token required_ [LINK](https://tfl.gov.uk/info-for/open-data-users/unified-api)
+Data sourced from the [TFL "Unified API"](https://tfl.gov.uk/info-for/open-data-users/unified-api) (_access token required_)
