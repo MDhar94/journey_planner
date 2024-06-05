@@ -41,6 +41,8 @@ if __name__ == "__main__":
         print("Valid mode provided!")
         res = line_status(API_KEY,mode)
 
+        breakpoint()
+
         status = res[0]['lineStatuses'][0]['statusSeverityDescription']
         status_num = res[0]['lineStatuses'][0]['statusSeverity']
 
