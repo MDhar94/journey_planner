@@ -11,6 +11,9 @@ from params import API_KEY
 app = dash.Dash(__name__
                 , assets_folder='./static')
 
+sparkle = emoji.emojize(':sparkles:')
+checkmark = emoji.emojize(':check_mark_button:')
+
 # Get data
 modes_data = return_modes(app_key=API_KEY)
 modes = tfl_modes(modes_data)
@@ -18,7 +21,7 @@ filtered_modes = [mode.lower() for mode in modes if mode.lower() in ['overground
 
 # App layout with CSS classes
 app.layout = html.Div([
-    html.H1("TFL Status Checker", className='header'),
+    html.H1(f"TFL Status Checker {emoji.emojize(':train:')}", className='header'),
     html.Div([
         html.Button('Check Tube and Overground', id='status-btn', n_clicks=0, className='button'),
     ], className='flex-center'),
@@ -39,15 +42,13 @@ def get_status(mode):
 
         if status_code == 10:
 
-            return html.P(f"There is {status.lower()} on the {mode} {emoji.emojize(':check_mark_button:')}"
+            return html.P(f"There is {status.lower()} on the {mode} {checkmark}"
                           , style={'color': '#007849'})
 
         else:
 
             return html.Div([
-                html.P("Bad luck, friend!"
-                    , style={'color': '#EE3224'}),
-                html.P(f"The status of the {mode} is: {emoji.emojize(':sparkles:')} {status} {emoji.emojize(':sparkles:')}"
+                html.P(f"The status of the {mode} is: {sparkle} {status} {sparkle}"
                     , style={'fontWeight': 'bold'}),
                 html.P("Affected segment & reason:"
                     , style={'color': '#003688'}),
@@ -61,7 +62,7 @@ def get_status(mode):
 
         if 10 in set(status_codes) and len(set(status_codes)) == 1:
 
-            return html.P(f"There is good service for all lines on the {mode} {emoji.emojize(':check_mark_button:')}"
+            return html.P(f"There is good service for all lines on the {mode} {checkmark}"
                           , style={'color': '#007849'})
 
         else:
@@ -77,14 +78,13 @@ def get_status(mode):
                 if status_code != 10:
 
                     tube_children.append(
-                        html.P(f"The status of the {line_names[idx]} is: {emoji.emojize(':sparkles:')} {statuses[idx]} {emoji.emojize(':sparkles:')}"
+                        html.P(f"The status of the {line_names[idx]} line is: {sparkle} {statuses[idx]} {sparkle}"
                                , style={'fontWeight': 'bold'}))
                     tube_children.append(
                         html.P("Affected segment & reason:"
                                , style={'color': '#003688'}))
                     tube_children.append(
-                        html.P(reasons[idx].strip()
-                               , style={'marginLeft': '20px'}))
+                        html.P(reasons[idx].strip()))
 
             return html.Div(tube_children)
 
@@ -101,7 +101,12 @@ def update_output(n_clicks):
         overground_status = get_status('overground')
         # Check if any status is not 'Good Service' and display a message
 
-        message = 'Sorry, friend!' if 'good' not in str(tube_status) or 'good' not in str(overground_status) else ''
+        if 'good' not in str(tube_status) or 'good' not in str(overground_status):
+            message = html.P('Sorry, friend!', style={'color': '#ff0000'})
+
+        else:
+            message = html.P('All services are running smoothly!', style={'color': '#007849'})
+
         return tube_status, overground_status, message
     return '', '', ''
 

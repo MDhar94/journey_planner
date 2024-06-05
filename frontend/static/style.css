@@ -26,6 +26,15 @@ h1 {
   background-color: #f8f9fa;
 }
 
+.service-message {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #ffffff;
+  text-align: center;
+}
+
 .container {
   width: 600px;
   margin: 0 auto;
