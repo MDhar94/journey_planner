@@ -2,15 +2,15 @@ import emoji  # type: ignore
 import survey  # type: ignore
 import sys
 
-from data_proc.data_proc import tfl_modes, status_proc_dev
+from data_proc.data_proc import tfl_modes, status_proc
 from status_api.status import line_status, return_modes
 from params import API_KEY
 
-def main_app(modes):
+def main_app(modes: list):
     """
     Main application flow.
 
-    Parameters:
+    Params:
         modes (list): A list of modes available for checking their status.
 
     Returns:
@@ -20,7 +20,7 @@ def main_app(modes):
     chosen_mode = modes[mode_idx]
     line_data = line_status(app_key=API_KEY, modes=chosen_mode)
 
-    service_dict = status_proc_dev(line_data, is_tube=(chosen_mode == 'Tube'))
+    service_dict = status_proc(line_data, is_tube=(chosen_mode == 'Tube'))
     status_codes = service_dict['status_code']
 
     if chosen_mode == 'Overground':

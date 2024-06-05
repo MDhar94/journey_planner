@@ -1,5 +1,5 @@
 import dash
-from dash import dcc, html
+from dash import html
 from dash.dependencies import Input, Output
 import emoji
 from status_api.status import line_status, return_modes

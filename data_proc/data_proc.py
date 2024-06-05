@@ -1,6 +1,18 @@
-def tfl_modes(mode_api_data, reduced_modes=True):
+# Functionality: Data processing functions for the TFL API
 
-    """Returns a list of all possible 'modes' on the TFL network"""
+def tfl_modes(mode_api_data, reduced_modes=True) -> list:
+
+    """
+    Returns a list of all possible 'modes' on the TFL network
+    Cleans up the API output
+
+    Params:
+        mode_api_data (list): The data from the TFL API
+        reduced_modes (bool): Whether to return only the modes of interest
+
+    Returns:
+        list: TFL modes as a list
+    """
 
     modes = [mode['modeName'].replace("-"," ").capitalize()
              for mode in mode_api_data]
@@ -10,10 +22,19 @@ def tfl_modes(mode_api_data, reduced_modes=True):
 
     return modes
 
-def status_proc_dev(status_data, is_tube=False):
+def status_proc(status_data, is_tube=False) -> dict:
 
-    """Given the data from the TFL line API, returns the status of a 'mode'
-    alongside the numeric code for that status"""
+    """
+    Given the data from the TFL line API, returns the status of a 'mode'
+    alongside the numeric code for that status
+
+    Params:
+        status_data (dict): The data from the TFL API
+        is_tube (bool): Whether the mode is the tube
+
+    Returns:
+        dict: The status of the specific mode
+    """
 
     service_dict = {'line_id':[], 'line_name':[],'status':[],'status_code':[], 'reason':[]}
 
@@ -54,41 +75,3 @@ def status_proc_dev(status_data, is_tube=False):
         service_dict['reason'].append(reason)
 
     return service_dict
-
-def status_proc(status_data):
-
-    """Given the data from the TFL line API, returns the status of a 'mode'
-    alongside the numeric code for that status"""
-
-    status = status_data[0]['lineStatuses'][0]['statusSeverityDescription']
-    status_code = status_data[0]['lineStatuses'][0]['statusSeverity']
-
-    return status.lower(), status_code
-
-def status_proc_tube(status_data):
-
-    """Given the data from the TFL line API, returns the status of a 'mode'
-    alongside the numeric code for that status - TUBE SPECIFIC"""
-
-    tube_dict = {'line':[],'status':[],'status_code':[]}
-
-    for x in status_data:
-        tube_dict['line'].append(x['id'])
-        tube_dict['status'].append(x['lineStatuses'][0]['statusSeverityDescription'])
-        tube_dict['status_code'].append(x['lineStatuses'][0]['statusSeverity'])
-
-    return tube_dict
-
-def issue_reason(status_data):
-
-    """Returns the description of why a 'mode' is being impacted
-    by an issue"""
-
-    return status_data[0]['lineStatuses'][0]['reason']
-
-def issue_reason_tube(status_data):
-
-    """Returns the description of why a 'mode' is being impacted
-    by an issue"""
-
-    return status_data['lineStatuses'][0]['reason']
