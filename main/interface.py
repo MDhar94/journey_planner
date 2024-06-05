@@ -29,7 +29,7 @@ def main_app(modes: list):
         else:
             reason = service_dict['reason'][0]
             print('Bad luck, friend!')
-            print(emoji.emojize(f"The {chosen_mode} is experiencing a :sparkles: {service_dict['status'][0]} :sparkles:"))
+            print(emoji.emojize(f"The current status of the {chosen_mode} is: :sparkles: {service_dict['status'][0]} :sparkles:"))
             print(f'The reason is:\n{reason.strip()}')
 
     elif chosen_mode == 'Tube':
@@ -39,7 +39,7 @@ def main_app(modes: list):
             for idx, status_code in enumerate(status_codes):
                 if status_code != 10:
                     reason = service_dict['reason'][idx]
-                    print(emoji.emojize(f"The {service_dict['line'][idx]} is experiencing :sparkles: {service_dict['status'][idx]} :sparkles:"))
+                    print(emoji.emojize(f"The current status of the {service_dict['line'][idx]} is: :sparkles: {service_dict['status'][idx]} :sparkles:"))
                     print(f'The reason is:\n{reason.strip()}')
 
     continue_idx = survey.routines.select('Would you like to check another service?', options=['Yes', 'No'])
