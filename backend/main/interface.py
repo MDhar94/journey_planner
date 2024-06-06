@@ -2,8 +2,8 @@ import emoji  # type: ignore
 import survey  # type: ignore
 import sys
 
-from data_proc.data_proc import tfl_modes, status_proc
-from status_api.status import line_status, return_modes
+from backend.data.data_proc.data_proc import tfl_modes, status_proc
+from backend.data.status_api.status import line_status, return_modes
 from params import API_KEY
 
 def main_app(modes: list):
@@ -35,11 +35,13 @@ def main_app(modes: list):
     elif chosen_mode == 'Tube':
         if 10 in set(status_codes) and len(set(status_codes)) == 1:
             print(f"\nThere is good service for all lines on the {chosen_mode}\n")
+
         else:
+
             for idx, status_code in enumerate(status_codes):
                 if status_code != 10:
                     reason = service_dict['reason'][idx]
-                    print(emoji.emojize(f"The current status of the {service_dict['line'][idx]} is: :sparkles: {service_dict['status'][idx]} :sparkles:"))
+                    print(emoji.emojize(f"The current status of the {service_dict['line_name'][idx]} is: :sparkles: {service_dict['status'][idx]} :sparkles:"))
                     print(f'The reason is:\n{reason.strip()}')
 
     continue_idx = survey.routines.select('Would you like to check another service?', options=['Yes', 'No'])
