@@ -21,3 +21,6 @@ clean_cache:
 	@find . -type d -name "__pycache__" -delete
 
 clean_all: clean clean_cache
+
+clean_data:
+	@rm raw_data/*.csv
