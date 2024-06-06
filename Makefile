@@ -9,7 +9,7 @@ reinstall_package:
 	@pip install -e .
 
 check_status:
-	python -c 'from main.interface import run_app; run_app()'
+	python -c 'from backend.main.interface import run_app; run_app()'
 
 ################## CLEANING ACTIONS ####################
 

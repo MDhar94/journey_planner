@@ -4,8 +4,8 @@ import dash
 from dash import html
 from dash.dependencies import Input, Output
 import emoji
-from status_api.status import line_status, return_modes
-from data_proc.data_proc import tfl_modes, status_proc
+from backend.data.status_api.status import line_status, return_modes
+from backend.data.data_proc.data_proc import tfl_modes, status_proc
 from params import API_KEY
 
 app = dash.Dash(__name__
@@ -40,6 +40,13 @@ def get_status(mode):
         status = service_dict['status'][0]
         reason = service_dict['reason'][0]
 
+        output = html.P(f"The status of the {mode} is: {sparkle} {status} {sparkle}"
+                    , style={'fontWeight': 'bold'})
+
+        if "casualty" or "passenger" in reason:
+            output = html.P(f"The status of the {mode} is: {status}"
+                    , style={'fontWeight': 'bold'})
+
         if status_code == 10:
 
             return html.P(f"There is {status.lower()} on the {mode} {checkmark}"
@@ -48,8 +55,7 @@ def get_status(mode):
         else:
 
             return html.Div([
-                html.P(f"The status of the {mode} is: {sparkle} {status} {sparkle}"
-                    , style={'fontWeight': 'bold'}),
+                output,
                 html.P("Affected segment & reason:"
                     , style={'color': '#003688'}),
                 html.P(reason.strip()
@@ -77,9 +83,13 @@ def get_status(mode):
             for idx, status_code in enumerate(status_codes):
                 if status_code != 10:
 
-                    tube_children.append(
-                        html.P(f"The status of the {line_names[idx]} line is: {sparkle} {statuses[idx]} {sparkle}"
-                               , style={'fontWeight': 'bold'}))
+                    output = html.P(f"The status of the {line_names[idx]} line is: {sparkle} {statuses[0]} {sparkle}")
+
+                    if "casualty" or "passenger" in reasons[idx]:
+                        output = html.P(f"The status of the {line_names[idx]} line is: {statuses[idx]}"
+                                        , style={'fontWeight': 'bold'})
+
+                    tube_children.append(output)
                     tube_children.append(
                         html.P("Affected segment & reason:"
                                , style={'color': '#003688'}))
