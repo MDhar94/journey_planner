@@ -1,9 +1,13 @@
 version: '3'
 services:
-  your-service:
+  app:
     image: tfl_status
     environment:
       - API_KEY=${API_KEY}
-      - GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/credentials/key.json
       - DATASET_NAME=${DATASET_NAME}
       - TABLE_NAME=${TABLE_NAME}
+      - PROJECT_ID=${PROJECT_ID}
+      - RAW_DATA_PATH=/app/raw_data
+    volumes:
+      - ${GOOGLE_APPLICATION_CREDENTIALS}:/app/credentials/key.json
