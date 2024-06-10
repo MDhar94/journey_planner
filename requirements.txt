@@ -5,3 +5,4 @@ requests
 survey
 python-dotenv
 ipdb
+pandas

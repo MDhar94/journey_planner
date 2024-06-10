@@ -2,9 +2,9 @@ import emoji  # type: ignore
 import survey  # type: ignore
 import sys
 
-from backend.data.data_proc.data_proc import tfl_modes, status_proc
-from backend.data.status_api.status import line_status, return_modes
-from params import API_KEY
+from backend.data.data_proc import tfl_modes, status_proc
+from backend.data.status import line_status, return_modes
+from backend.logic.params import API_KEY
 
 def main_app(modes: list):
     """
