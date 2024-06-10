@@ -1,0 +1,9 @@
+version: '3'
+services:
+  your-service:
+    image: tfl_status
+    environment:
+      - API_KEY=${API_KEY}
+      - GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}
+      - DATASET_NAME=${DATASET_NAME}
+      - TABLE_NAME=${TABLE_NAME}

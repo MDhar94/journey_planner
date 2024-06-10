@@ -1,8 +1,10 @@
 dash
 emoji
-plotly-express
-requests
-survey
-python-dotenv
+google-auth
 ipdb
 pandas
+pandas-gbq
+plotly-express
+python-dotenv
+requests
+survey
