@@ -5,6 +5,7 @@ WORKDIR /app
 # Copy the necessary dirs into the container at /app
 COPY requirements_prod.txt requirements.txt
 COPY backend backend
+COPY raw_data raw_data
 
 RUN pip install -r requirements.txt
 
