@@ -1,0 +1,6 @@
+version: '3'
+services:
+  your-service:
+    image: your-image-name
+    environment:
+      - API_KEY=${API_KEY}
