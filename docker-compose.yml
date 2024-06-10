@@ -1,6 +1,6 @@
 version: '3'
 services:
   your-service:
-    image: your-image-name
+    image: your-image-name # UPDATE
     environment:
       - API_KEY=${API_KEY}
