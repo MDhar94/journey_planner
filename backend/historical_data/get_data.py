@@ -26,7 +26,7 @@ def get_data() -> pd.DataFrame:
     df1 = pd.DataFrame(mode_dicts[0])
     df2 = pd.DataFrame(mode_dicts[1])
     mode_df = pd.concat([df1, df2]).reset_index(drop=True)
-    mode_df = mode_df[mode_df['status_code'] != 10]
+    # mode_df = mode_df[mode_df['status_code'] != 10]
     mode_df['date'] = pd.to_datetime('today').strftime("%m/%d/%Y, %H:%M")
 
     return mode_df
