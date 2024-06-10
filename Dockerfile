@@ -4,10 +4,12 @@ WORKDIR /app
 
 # Copy the necessary dirs into the container at /app
 COPY requirements_prod.txt requirements.txt
-COPY backend backend
-COPY raw_data raw_data
-
 RUN pip install -r requirements.txt
+
+COPY backend backend
+COPY setup.py setup.py
+RUN mkdir raw_data
+RUN pip install .
 
 # Install cron
 RUN apt-get update && apt-get install -y cron

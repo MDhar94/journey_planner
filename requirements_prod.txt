@@ -1,2 +1,4 @@
+google-auth
 requests
 pandas
+pandas-gbq
