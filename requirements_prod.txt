@@ -2,3 +2,4 @@ google-auth
 requests
 pandas
 pandas-gbq
+ipdb
