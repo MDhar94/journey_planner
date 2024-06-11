@@ -11,6 +11,9 @@ COPY setup.py setup.py
 RUN mkdir raw_data
 RUN pip install .
 
+ADD entry.sh /usr/local/bin/entry.sh
+RUN chmod 777 /usr/local/bin/entry.sh
+
 # Install cron
 RUN apt-get update && apt-get install -y cron
 
@@ -23,4 +26,5 @@ RUN crontab /etc/cron.d/hello-cron
 RUN touch /var/log/cron.log
 
 # Run the command on container startup
-CMD cron && tail -f /var/log/cron.log
+# CMD cron && tail -f /var/log/cron.log
+CMD ["/usr/local/bin/entry.sh"]
