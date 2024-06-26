@@ -1,6 +1,7 @@
 # Files
 .DS_store
 .env
+.env.yaml
 .python-version
 
 # Folders
